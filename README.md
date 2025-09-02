@@ -4,6 +4,12 @@ An ASP.NET Core (net9.0 target) backend plus a Vite + React + Tailwind (3.x) fro
 
 > NOTE: Runtime target is `net9.0` while EF / Identity packages are 8.x for stability until 9.x data stack is fully released. This can be upgraded later when Npgsql + EF Core 9 stable lands.
 
+## Design Prototype (Figma)
+Read-only UI/UX prototype (screens / flows) is available here:
+
+https://www.figma.com/proto/cYFebxAZlhM4GkOVacGOEx/Watchly?node-id=1-3&starting-point-node-id=1%3A3
+
+
 ## Key Features (Current)
 - Identity-based registration / login / logout / me endpoints
 - JWT Bearer auth reading token from `jwt` cookie
