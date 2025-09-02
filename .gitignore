@@ -1,0 +1,45 @@
+# .NET build artifacts
+bin/
+obj/
+
+# Visual Studio / VS Code
+.vs/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+
+# Logs
+*.log
+logs/
+
+# Env / secrets
+.env
+*.env.local
+.env.*.local
+secrets.json
+appsettings.*.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Coverage / test
+coverage/
+TestResult*/
+*.coverage
+*.coveragexml
+
+# Packages
+*.nupkg
+*.snupkg
+
+# Rider / JetBrains
+.idea/
+*.iml
+
+# Node (if frontend client folder introduced)
+node_modules/
+
+# Others
+_ReSharper.Caches/
