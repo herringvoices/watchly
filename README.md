@@ -78,7 +78,7 @@ Connection string is assembled from `DEV_` prefixed vars in Development or unpre
 2. Create / edit `.env` (already present) with local DB creds
 3. Start Postgres (example using Docker):
    ```bash
-   docker run -d --name watchly-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=HyvDevDb -p 5432:5432 postgres:16
+   docker run -d --name watchly-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_DB=watchly_dev -p 5432:5432 postgres:16
    ```
 4. (Optional first time) Add initial migration & apply (skip until DB is ready):
    ```bash
@@ -231,7 +231,7 @@ services:
     image: postgres:16
     environment:
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: HyvDevDb
+   POSTGRES_DB: watchly_dev
     ports:
       - "5432:5432"
     volumes:
