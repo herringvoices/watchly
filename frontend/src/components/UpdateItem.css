@@ -1,0 +1,217 @@
+.update-item {
+  background-color: var(--color-background-lightest);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.update-item--processing {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.update-item--compact {
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* Header */
+.update-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.update-item__user-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+  flex: 1;
+  min-width: 0;
+}
+
+.update-item__user-btn:hover .update-item__name {
+  color: var(--color-primary);
+}
+
+.update-item__user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.update-item__name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-dark-primary);
+  line-height: 1.4;
+  transition: color 0.15s ease;
+}
+
+.update-item__timestamp {
+  font-size: 12px;
+  color: var(--color-text-dark-secondary);
+  line-height: 1.4;
+}
+
+/* Actions */
+.update-item__actions-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.update-item__actions-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-dark-secondary);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.update-item__actions-btn:hover {
+  background-color: var(--color-background-light);
+  color: var(--color-text-dark-primary);
+}
+
+/* Popover */
+.update-item__popover {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  right: 0;
+  background-color: var(--color-background-darkest);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.update-item__popover-loading {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  font-size: 13px;
+  color: var(--color-text-light);
+}
+
+.update-item__popover-item {
+  display: block;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-lightest);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.update-item__popover-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.update-item__popover-item--danger {
+  color: var(--color-danger);
+}
+
+/* Body */
+.update-item__body {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.update-item__poster-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.update-item__poster {
+  width: 60px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.update-item__poster--placeholder {
+  width: 60px;
+  height: 90px;
+  background-color: var(--color-background-dark);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-light);
+}
+
+.update-item__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.update-item__media-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-dark-primary);
+  line-height: 1.3;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.15s ease;
+}
+
+.update-item__media-title:hover {
+  color: var(--color-primary);
+}
+
+.update-item__last-watched {
+  font-size: 13px;
+  color: var(--color-text-dark-secondary);
+  line-height: 1.4;
+}
+
+.update-item__description {
+  font-size: 14px;
+  color: var(--color-text-dark-primary);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* Footer */
+.update-item__footer {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}

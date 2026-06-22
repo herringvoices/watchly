@@ -1,0 +1,33 @@
+.comment-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  color: var(--color-text-dark-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  justify-content: center;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.comment-btn:hover {
+  background-color: var(--color-background-light);
+  color: var(--color-secondary);
+}
+
+.comment-btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.comment-btn-count {
+  font-size: 13px;
+  line-height: 1;
+}

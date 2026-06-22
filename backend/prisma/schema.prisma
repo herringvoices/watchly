@@ -1,0 +1,151 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MediaStatus {
+  CurrentlyWatching
+  WantToWatch
+  Hiatus
+  Watched
+  Dropped
+}
+
+enum WatchSessionLength {
+  Short
+  Medium
+  Long
+}
+
+model User {
+  id             String        @id @default(cuid())
+  firstName      String
+  lastName       String
+  username       String        @unique
+  email          String        @unique
+  passwordHash   String
+  profilePicture String?
+  bio            String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  media          Media[]
+  mediaUpdates   MediaUpdate[]
+  comments       Comment[]
+  updateLikes    UpdateLike[]
+  commentLikes   CommentLike[]
+  following      Follow[]      @relation("Sender")
+  followers      Follow[]      @relation("Recipient")
+
+  @@map("Users")
+}
+
+model Follow {
+  id          Int      @id @default(autoincrement())
+  senderId    String
+  recipientId String
+  createdAt   DateTime @default(now())
+
+  sender    User @relation("Sender", fields: [senderId], references: [id])
+  recipient User @relation("Recipient", fields: [recipientId], references: [id])
+
+  @@unique([senderId, recipientId])
+  @@map("Follow")
+}
+
+model MediaRating {
+  id              Int      @id @default(autoincrement())
+  mediaApiId      Int
+  mediaType       String
+  sumOfRatings    Float    @default(0)
+  numberOfRatings Int      @default(0)
+  rating          Float?
+  lastUpdate      DateTime @default(now()) @updatedAt
+
+  media Media[]
+
+  @@unique([mediaApiId, mediaType])
+  @@map("MediaRating")
+}
+
+model Media {
+  id          Int         @id @default(autoincrement())
+  mediaApiId  Int
+  mediaType   String
+  userId      String
+  title       String?
+  description String?
+  thumbnail   String?
+  rating      Float?
+  mediaStatus MediaStatus
+  createdAt   DateTime    @default(now())
+
+  user        User         @relation(fields: [userId], references: [id])
+  mediaRating MediaRating? @relation(fields: [mediaApiId, mediaType], references: [mediaApiId, mediaType])
+  updates     MediaUpdate[]
+
+  @@map("Media")
+}
+
+model MediaUpdate {
+  id                 Int                @id @default(autoincrement())
+  mediaId            Int
+  userId             String
+  lastWatched        String
+  description        String?
+  rating             Int
+  watchSessionLength WatchSessionLength
+  createdAt          DateTime           @default(now())
+
+  media    Media        @relation(fields: [mediaId], references: [id])
+  user     User         @relation(fields: [userId], references: [id])
+  comments Comment[]
+  likes    UpdateLike[]
+
+  @@map("MediaUpdate")
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  updateId  Int
+  userId    String
+  text      String
+  createdAt DateTime @default(now())
+
+  update MediaUpdate   @relation(fields: [updateId], references: [id])
+  user   User          @relation(fields: [userId], references: [id])
+  likes  CommentLike[]
+
+  @@map("Comment")
+}
+
+model UpdateLike {
+  id        Int      @id @default(autoincrement())
+  updateId  Int
+  userId    String
+  createdAt DateTime @default(now())
+
+  update MediaUpdate @relation(fields: [updateId], references: [id])
+  user   User        @relation(fields: [userId], references: [id])
+
+  @@unique([updateId, userId])
+  @@map("UpdateLike")
+}
+
+model CommentLike {
+  id        Int      @id @default(autoincrement())
+  commentId Int
+  userId    String
+  createdAt DateTime @default(now())
+
+  comment Comment @relation(fields: [commentId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@unique([commentId, userId])
+  @@map("CommentLike")
+}

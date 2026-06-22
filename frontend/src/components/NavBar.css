@@ -1,0 +1,177 @@
+/* ── Mobile: fixed bottom bar ─────────────────────────────────── */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height);
+  background-color: var(--color-primary);
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  padding: 0 var(--space-2);
+}
+
+
+.navbar-links {
+  display: contents;
+  list-style: none;
+}
+
+/* All nav items: white icons on pink background */
+.navbar-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-lightest);
+  padding: var(--space-2);
+  border-radius: var(--radius-full);
+  min-width: 44px;
+  min-height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  opacity: 0.7;
+}
+
+.navbar-link:hover,
+.navbar-link--active {
+  opacity: 1;
+}
+
+.navbar-link-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Hide labels on mobile — icon only */
+.navbar-link-label {
+  display: none;
+}
+
+/* Add button — dark circle with white plus */
+.navbar-add-btn {
+  background-color: var(--color-background-darkest);
+  border-radius: var(--radius-full);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  opacity: 1;
+  flex-shrink: 0;
+}
+
+.navbar-add-btn:hover {
+  opacity: 0.85;
+  background-color: var(--color-background-darkest);
+}
+
+/* Profile wrapper */
+.navbar-profile {
+  position: relative;
+}
+
+/* Profile popover — opens upward on mobile */
+.navbar-popover {
+  position: absolute;
+  bottom: calc(100% + var(--space-2));
+  right: 0;
+  background-color: var(--color-background-darkest);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  min-width: 160px;
+  overflow: hidden;
+  z-index: 200;
+}
+
+.navbar-popover-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-lightest);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.navbar-popover-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.navbar-popover-item--danger {
+  color: var(--color-danger);
+}
+
+/* ── Desktop: fixed top bar ───────────────────────────────────── */
+@media (min-width: 768px) {
+  .navbar {
+    top: 0;
+    bottom: auto;
+    padding-bottom: 0;
+  }
+
+  .navbar-inner {
+    justify-content: flex-start;
+    gap: var(--space-6);
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+  }
+
+  .navbar-item--mobile-only {
+    display: none;
+  }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+    flex: 1;
+  }
+
+  .navbar-link {
+    flex-direction: row;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+  }
+
+  .navbar-link-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .navbar-add-btn {
+    width: auto;
+    height: auto;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    gap: var(--space-2);
+    flex-direction: row;
+  }
+
+  /* Push profile to the far right */
+  .navbar-profile {
+    margin-left: auto;
+  }
+
+  /* Popover opens downward on desktop */
+  .navbar-popover {
+    bottom: auto;
+    top: calc(100% + var(--space-2));
+  }
+}

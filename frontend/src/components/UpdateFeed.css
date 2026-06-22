@@ -1,0 +1,22 @@
+.update-feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.update-feed__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.update-feed__empty {
+  font-size: 14px;
+  color: var(--color-text-dark-secondary);
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+.update-feed__load-more {
+  align-self: center;
+}

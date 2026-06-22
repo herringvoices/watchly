@@ -1,0 +1,24 @@
+/* Mobile: bottom nav, content fills space above it */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+  padding: var(--space-4);
+  /* Leave room for bottom nav on mobile */
+  padding-bottom: calc(var(--nav-height) + var(--space-4) + env(safe-area-inset-bottom, 0px));
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Desktop: top nav, content starts below it */
+@media (min-width: 768px) {
+  .app-main {
+    padding-top: calc(var(--nav-height) + var(--space-4));
+    padding-bottom: var(--space-4);
+  }
+}
